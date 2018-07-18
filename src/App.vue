@@ -3,26 +3,26 @@
         <div class="fixed-nav sticky-footer bg-dark" id="page-top">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
-                <a class="navbar-brand" href="#" @click="chamarInicio">Turion Analisys System</a>
+                <a class="navbar-brand" href="#" @click="chamarInicio">Blabla Analisys System</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                            <a class="nav-link" href="#" @click="chamarConsulta">
+                            <a class="nav-link" href="#" @click="chamarConsulta" data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <i class="fa fa-fw fa-dashboard"></i>
                                 <span class="nav-link-text">Cadastros</span>
                             </a>
                         </li>
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <i class="fa fa-fw fa-area-chart"></i>
                                 <span class="nav-link-text">Comercial</span>
                             </a>
                         </li>
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#" data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <i class="fa fa-fw fa-table"></i>
                                 <span class="nav-link-text">Expedição</span>
                             </a>
@@ -34,10 +34,10 @@
                             </a>
                             <ul class="sidenav-second-level collapse" id="collapseComponents">
                                 <li>
-                                    <a href="#">Comercial</a>
+                                    <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">Comercial</a>
                                 </li>
                                 <li>
-                                    <a href="#">Estoques</a>
+                                    <a href="#" data-toggle="collapse" data-target=".navbar-collapse.show">Estoques</a>
                                 </li>
                             </ul>
                         </li>
@@ -96,7 +96,7 @@
             </nav>
 
             <div class="content-wrapper">
-                <div class="container-fluid">
+                <div class="container">
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li v-if="tela === 1" class="breadcrumb-item active">Inicio</li>
@@ -105,16 +105,9 @@
                     </ol>
                     <inicio v-if="tela === 1"></inicio>
                     <consulta v-if="tela === 2" :titulo="dados.titulo" :mensagem="dados.mensagem" :avancado="dados.avancado" :cabecalho="dados.cabecalho" :registros="dados.registros"></consulta>
-
                 </div>
                 <!-- /.content-wrapper-->
-                <footer class="sticky-footer">
-                    <div class="container">
-                        <div class="text-center">
-                            <small>HIT TO TARGET</small>
-                        </div>
-                    </div>
-                </footer>
+
                 <!-- Scroll to Top Button-->
                 <a class="scroll-to-top rounded" href="#page-top">
                     <i class="fa fa-angle-up"></i>

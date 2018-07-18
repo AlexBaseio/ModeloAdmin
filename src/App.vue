@@ -96,7 +96,7 @@
             </nav>
 
             <div class="content-wrapper">
-                <div class="container">
+                <div class="container-fluid">
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li v-if="tela === 1" class="breadcrumb-item active">Inicio</li>

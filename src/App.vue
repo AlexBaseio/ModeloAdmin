@@ -1,16 +1,17 @@
 <template>
     <div id="app">
-        <div class="fixed-nav sticky-footer bg-dark" id="page-top">
+        <login v-if="tela === 1" @chamar="chamarTela"></login>
+        <div v-if="tela !== 1" class="fixed-nav sticky-footer bg-dark" id="page-top">
             <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
-                <a class="navbar-brand" href="#" @click="chamarInicio">Blabla Analisys System</a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+                <a class="navbar-brand" href="#" @click="chamarTela(2)">Blabla Analisys System</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                            <a class="nav-link" href="#" @click="chamarConsulta" data-toggle="collapse" data-target=".navbar-collapse.show">
+                            <a class="nav-link" href="#" @click="tela = 3" data-toggle="collapse" data-target=".navbar-collapse.show">
                                 <i class="fa fa-fw fa-dashboard"></i>
                                 <span class="nav-link-text">Cadastros</span>
                             </a>
@@ -65,14 +66,31 @@
 
                     <ul class="navbar-nav sidenav-toggler">
                         <li class="nav-item">
-                            <a class="nav-link text-center" id="sidenavToggler">
+                            <a class="nav-link text-center" id="sidenavToggler" @click="fecharPainel()">
                                 <i class="fa fa-fw fa-angle-left"></i>
                             </a>
                         </li>
                     </ul>
+
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <!-- Breadcrumbs-->
+                            <ol class="breadcrumb bg-dark d-none d-xl-block">
+                                <li v-if="tela === 2" class="breadcrumb-item active">Inicio</li>
+
+                                <li v-if="tela === 3" class="breadcrumb-item"><a href="#" @click="chamarTela(2)">Inicio</a></li>
+                                <li v-if="tela === 3" class="breadcrumb-item active">Cadastro</li>
+
+                                <li v-if="tela === 4" class="breadcrumb-item"><a href="#" @click="chamarTela(2)">Inicio</a></li>
+                                <li v-if="tela === 4" class="breadcrumb-item"><a href="#" @click="chamarTela(3)">Cadastro</a></li>
+                                <li v-if="tela === 4" class="breadcrumb-item active">Alterando</li>
+                            </ol>
+                        </li>
+                    </ul>
+
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle mr-lg-2" id="usuarioDropdown" href="#" data-toggle="dropdown">
                                 <i class="fa fa-fw fa-user"></i>
                                 <span class="d-lg-none">Alexandre Baseio</span>
                             </a>
@@ -97,14 +115,9 @@
 
             <div class="content-wrapper">
                 <div class="container-fluid">
-                    <!-- Breadcrumbs-->
-                    <ol class="breadcrumb">
-                        <li v-if="tela === 1" class="breadcrumb-item active">Inicio</li>
-                        <li v-if="tela === 2" class="breadcrumb-item"><a href="#" @click="chamarInicio">Inicio</a></li>
-                        <li v-if="tela === 2" class="breadcrumb-item active">Cadastro</li>
-                    </ol>
-                    <inicio v-if="tela === 1"></inicio>
-                    <consulta v-if="tela === 2" :titulo="dados.titulo" :mensagem="dados.mensagem" :avancado="dados.avancado" :cabecalho="dados.cabecalho" :registros="dados.registros"></consulta>
+                    <inicio v-if="tela === 2"></inicio>
+                    <consulta v-if="tela === 3" @chamar="chamarTelaReg" :titulo="dados.titulo" :mensagem="dados.mensagem" :avancado="dados.avancado" :cabecalho="dados.cabecalho" :registros="dados.registros" :informacoes="dados.informacoes"></consulta>
+                    <cadastro v-if="tela === 4" @chamar="chamarTela" :titulo="dados.titulo" :cabecalho="dados.cabecalho" :registro="dados.registros[reg_index]"></cadastro>
                 </div>
                 <!-- /.content-wrapper-->
 
@@ -113,20 +126,28 @@
                     <i class="fa fa-angle-up"></i>
                 </a>
 
+                <footer class="sticky-footer">
+                  <div class="container">
+                    <div class="text-center">
+                      <small>Hit to target</small>
+                    </div>
+                  </div>
+                </footer>
+
                 <!-- Logout Modal-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
+                                <h5 class="modal-title" id="exampleModalLabel">Você realmente deseja sair?</h5>
+                                <button class="close" type="button" data-dismiss="modal"><span>×</span></button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                            <div class="modal-body">
+                                Selecione "Logout" para encerrar esta sessão.
+                            </div>
                             <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="login.html">Logout</a>
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                <a class="btn btn-primary" data-dismiss="modal" @click="tela = 1">Logout</a>
                             </div>
                         </div>
                     </div>
@@ -139,6 +160,8 @@
 <script>
 import Inicio from './components/Inicio'
 import Consulta from './components/Consulta'
+import Login from './components/Login'
+import Cadastro from './components/Cadastro'
 
 var dados = {
   titulo: "Cadastro de Produtos",
@@ -164,7 +187,7 @@ var dados = {
     {codigo: "006.003.002", descricao: "Suporte Mega Azul", preco: "29.31", quantidade: "146", fornecedor: "QSS", deposito: "Consignado", ultimacompra: "16/10/2017"},
     {codigo: "009.001.005", descricao: "Cordão Pequeno Laranja", preco: "29.43", quantidade: "130", fornecedor: "Tilibra", deposito: "Externo", ultimacompra: "07/10/2017"},
   ],
-  informacoes: "",
+  informacoes: "Total de Registro: 10",
   avancado: [
     {descricao: "Fornecedor", id:"fornecedor"},
     {descricao: "Deposito", id:"deposito"}
@@ -176,20 +199,29 @@ export default {
   name: 'app',
   components: {
     Inicio,
-    Consulta
+    Consulta,
+    Login,
+    Cadastro
   },
   data () {
       return {
           tela: 1,
+          reg_index: 0,
           dados: dados
       }
   },
   methods: {
-    chamarInicio() {
-      this.tela = 1;
+    chamarTela(x) {
+      this.tela = x;
     },
-    chamarConsulta() {
-        this.tela = 2;
+    chamarTelaReg(x, index) {
+      this.tela = x;
+      this.reg_index = index;
+    },
+    fecharPainel() {
+      $("body").toggleClass("sidenav-toggled");
+      $(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
+      $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show");
     }
   }
 }
@@ -197,6 +229,27 @@ export default {
 
 <style>
 .breadcrumb {
-    padding: 2px 15px !important;
+    padding: 0;
+    margin: 0;
 }
+
+.breadcrumb-item {
+  display: inline;
+}
+.breadcrumb-item a{
+  color: white;
+}
+
+div.sticky-footer {
+  margin-bottom: 56px;
+}
+
+div.sticky-footer .content-wrapper {
+  min-height: calc(100vh - 56px - 56px);
+}
+
+div.fixed-nav {
+  padding-top: 56px;
+}
+
 </style>

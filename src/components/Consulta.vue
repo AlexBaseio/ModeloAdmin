@@ -3,9 +3,21 @@
         <!-- Apresentação das mensagem de alerta e confirmações -->
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-success" role="alert">
+                <div class="alert tas-success" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
-                    <p class="mb-0">{{ mensagem }}</p>
+                    <p class="mb-0">Mensagem de sucesso: {{ mensagem }}</p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="alert tas-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+                    <p class="mb-0">Mensagem de atenção: {{ mensagem }}</p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="alert tas-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+                    <p class="mb-0">Mensagem de erro: {{ mensagem }}</p>
                 </div>
             </div>
         </div>
@@ -68,7 +80,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-hover table-sm table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th v-for="(cab) in cabecalho" v-if="cab.visivel" :class="setClassificacao(cab.classificacao)">{{ cab.descricao }}</th>
@@ -94,8 +106,8 @@
                                             </div>
                                             <div class="card-footer m-0 p-0">
                                                 <div class="btn-group btn-group-sm p-1 m-0">
-                                                    <a class="btn btn-outline-success" @click="chamarCadastro(index)">Alterar</a>
                                                     <a href="#" class="btn btn-outline-danger">Excluir</a>
+                                                    <a class="btn btn-outline-success" @click="chamarCadastro(index)">Alterar</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -154,6 +166,8 @@ export default {
 </script>
 
 <style>
+@import "./../custom.css";
+
 #btn-divider {
     padding: 2px
 }
@@ -175,6 +189,13 @@ export default {
     content: "\f0dd";
     float: right;
     font-family: fontawesome;
+}
+
+.alert {
+    border-radius: 10px;
+}
+.card {
+    box-shadow: inherit;
 }
 
 </style>

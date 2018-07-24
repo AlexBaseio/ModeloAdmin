@@ -1,0 +1,159 @@
+#app {
+    height: 100%;
+}
+
+:root {
+    --cor-base-verde: hsl(120, 100%, 92%);
+
+    --cor-titulo: hsl(120, 80%, 80%);
+    --cor-titulo-fundo: hsl(120, 80%, 40%);
+
+    --tas-link: hsl(150, 100%, 36%);
+    --tas-link-hover: hsl(150, 100%, 16%);
+
+    --tas-base-perc-color: 60%;
+
+    --tas-primary-color: 130;
+    --tas-primary-saturation: 90%;
+    --tas-primary: hsl(var(--tas-primary-color), var(--tas-primary-saturation), var(--tas-base-perc-color));
+    --tas-primary-border: hsl(var(--tas-primary-color), var(--tas-primary-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-primary-hover: hsl(var(--tas-primary-color), var(--tas-primary-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-primary-hover-border: hsl(var(--tas-primary-color), var(--tas-primary-saturation), calc(var(--tas-base-perc-color) - 25%));
+
+    --tas-secundary-color: 0;
+    --tas-secundary-saturation: 0%;
+    --tas-secundary: hsl(var(--tas-secundary-color), var(--tas-secundary-saturation), var(--tas-base-perc-color));
+    --tas-secundary-border: hsl(var(--tas-secundary-color), var(--tas-secundary-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-secundary-hover: hsl(var(--tas-secundary-color), var(--tas-secundary-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-secundary-hover-border: hsl(var(--tas-secundary-color), var(--tas-secundary-saturation), calc(var(--tas-base-perc-color) - 25%));
+
+    --tas-success-color: 120;
+    --tas-success-saturation: 95%;
+    --tas-success: hsl(var(--tas-success-color), var(--tas-success-saturation), var(--tas-base-perc-color));
+    --tas-success-border: hsl(var(--tas-success-color), var(--tas-success-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-success-hover: hsl(var(--tas-success-color), var(--tas-success-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-success-hover-border: hsl(var(--tas-success-color), var(--tas-success-saturation), calc(var(--tas-base-perc-color) - 25%));
+
+    --tas-danger-color: 5;
+    --tas-danger-saturation: 80%;
+    --tas-danger: hsl(var(--tas-danger-color), var(--tas-danger-saturation), var(--tas-base-perc-color));
+    --tas-danger-border: hsl(var(--tas-danger-color), var(--tas-danger-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-danger-hover: hsl(var(--tas-danger-color), var(--tas-danger-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-danger-hover-border: hsl(var(--tas-danger-color), var(--tas-danger-saturation), calc(var(--tas-base-perc-color) - 25%));
+
+    --tas-warning-color: 60;
+    --tas-warning-saturation: 90%;
+    --tas-warning: hsl(var(--tas-warning-color), var(--tas-warning-saturation), var(--tas-base-perc-color));
+    --tas-warning-border: hsl(var(--tas-warning-color), var(--tas-warning-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-warning-hover: hsl(var(--tas-warning-color), var(--tas-warning-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-warning-hover-border: hsl(var(--tas-warning-color), var(--tas-warning-saturation), calc(var(--tas-base-perc-color) - 25%));
+
+    --tas-info-color: 195;
+    --tas-info-saturation: 90%;
+    --tas-info: hsl(var(--tas-info-color), var(--tas-info-saturation), var(--tas-base-perc-color));
+    --tas-info-border: hsl(var(--tas-info-color), var(--tas-info-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-info-hover: hsl(var(--tas-info-color), var(--tas-info-saturation), calc(var(--tas-base-perc-color) - 15%));
+    --tas-info-hover-border: hsl(var(--tas-info-color), var(--tas-info-saturation), calc(var(--tas-base-perc-color) - 25%));
+}
+
+html, body {
+    background-color: var(--cor-base-verde);
+}
+
+a {
+    color: var(--tas-link);
+}
+a:hover {
+    color: var(--tas-link-hover);
+}
+
+
+input.form-control {
+    border-radius: 10px;
+}
+
+.card {
+    opacity: 0.75;
+    border-radius: 20px;
+    border: 1px solid var(--cor-titulo);
+    box-shadow: 3px 3px 30px 10px var(--cor-titulo-fundo);
+}
+.card .card-header {
+    border-radius: 20px 20px 0px 0px;
+    background-color: var(--cor-titulo);
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.btn {
+    border-radius: 10px;
+    box-shadow: 0 0 3px 0 inset;
+}
+
+.btn.login {
+    width: 150px;
+}
+
+.form-control:focus
+{
+    border-color: var(--cor-titulo-fundo);
+    box-shadow: 0 0 0 0.2rem var(--cor-titulo);
+}
+
+body.sticky-footer .content-wrapper {
+  min-height: 30px;
+}
+
+.tas-primary {
+    background-color: var(--tas-primary);
+    border-color: var(--tas-primary-border);
+}
+.tas-primary:hover {
+    background-color: var(--tas-primary-hover);
+    border-color: var(--tas-primary-hover-border);
+}
+
+.tas-secundary {
+    background-color: var(--tas-secundary);
+    border-color: var(--tas-secundary-border);
+}
+.tas-secundary:hover {
+    background-color: var(--tas-secundary-hover);
+    border-color: var(--tas-secundary-hover-border);
+}
+
+.tas-success {
+    background-color: var(--tas-success);
+    border-color: var(--tas-success-border);
+}
+.tas-success:hover {
+    background-color: var(--tas-success-hover);
+    border-color: var(--tas-success-hover-border);
+}
+
+.tas-danger {
+    background-color: var(--tas-danger);
+    border-color: var(--tas-danger-border);
+}
+.tas-danger:hover {
+    background-color: var(--tas-danger-hover);
+    border-color: var(--tas-danger-hover-border);
+}
+
+.tas-warning {
+    background-color: var(--tas-warning);
+    border-color: var(--tas-warning-border);
+}
+.tas-warning:hover {
+    background-color: var(--tas-warning-hover);
+    border-color: var(--tas-warning-hover-border);
+}
+
+.tas-info {
+    background-color: var(--tas-info);
+    border-color: var(--tas-info-border);
+}
+.tas-info:hover {
+    background-color: var(--tas-info-hover);
+    border-color: var(--tas-info-hover-border);
+}

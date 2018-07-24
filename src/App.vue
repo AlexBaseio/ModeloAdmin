@@ -1,9 +1,9 @@
 <template>
     <div id="app">
         <login v-if="tela === 1" @chamar="chamarTela"></login>
-        <div v-if="tela !== 1" class="fixed-nav sticky-footer bg-dark" id="page-top">
+        <div v-if="tela !== 1" class="fixed-nav sticky-footer" id="page-top">
             <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
                 <a class="navbar-brand" href="#" @click="chamarTela(2)">Blabla Analisys System</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
@@ -75,7 +75,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <!-- Breadcrumbs-->
-                            <ol class="breadcrumb bg-dark d-none d-xl-block">
+                            <ol class="breadcrumb d-none d-xl-block">
                                 <li v-if="tela === 2" class="breadcrumb-item active">Inicio</li>
 
                                 <li v-if="tela === 3" class="breadcrumb-item"><a href="#" @click="chamarTela(2)">Inicio</a></li>
@@ -228,16 +228,16 @@ export default {
 </script>
 
 <style>
+@import "./../custom.css";
+
 .breadcrumb {
     padding: 0;
     margin: 0;
+    background-color: var(--cor-base-verde);
 }
 
 .breadcrumb-item {
   display: inline;
-}
-.breadcrumb-item a{
-  color: white;
 }
 
 div.sticky-footer {
@@ -251,5 +251,4 @@ div.sticky-footer .content-wrapper {
 div.fixed-nav {
   padding-top: 56px;
 }
-
 </style>
